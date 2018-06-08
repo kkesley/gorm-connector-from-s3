@@ -21,10 +21,10 @@ func MysqlConnect() (*gorm.DB, error) {
 	sess := session.Must(session.NewSession(&config))
 
 	svc := s3.New(sess)
-	fmt.Println("accessing bucket: " + os.Getenv("DB_BUCKET") + "/" + os.Getenv("DB_BUCKET_KEY"))
+	fmt.Println("accessing bucket: " + os.Getenv("DB_BUCKET") + "/" + os.Getenv("DB_BUCKET_KEY_FINAL"))
 	s3Output, err := svc.GetObject(&s3.GetObjectInput{
 		Bucket: aws.String(os.Getenv("DB_BUCKET")),
-		Key:    aws.String(os.Getenv("DB_BUCKET_KEY")),
+		Key:    aws.String(os.Getenv("DB_BUCKET_KEY_FINAL")),
 	})
 
 	if err != nil {
